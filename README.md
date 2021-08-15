@@ -1,3 +1,10 @@
+# How it looks like
+## Main Page
+<img src="https://github.com/lauyuda/marketplaceClone/blob/main/screenshot/marketplaceMain.jpeg">
+
+## Edit Modal
+<img src="https://github.com/lauyuda/marketplaceClone/blob/main/screenshot/marketplaceEdit.jpeg">
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
