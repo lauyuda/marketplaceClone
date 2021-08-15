@@ -40,7 +40,21 @@ export const EditModal = (props) => {
         <div className="h-full w-screen px-3 py-12 space-y-6 
         bg-black bg-opacity-50 fixed inset-0 flex justify-center items-center">
             <div className="md:w-1/2">
-                <form onSubmit={() => console.log('submitted')}>
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    patchListing(props._id, {
+                        title: modalTitle,
+                        price: Number(modalPrice),
+                        description: modalDescription,
+                        imageUrl: modalImageUrl,
+                        condition: modalCondition,
+                        availability: modalAvailability,
+                        numOfStock: Number(modalNumOfStock),
+                    }).then(() => {
+                        props.loadListings();
+                    })
+                    props.setIsEdit(!props.isEdit);
+                }}>
                     <div className="
                         bg-white
                         overflow-hidden
@@ -71,6 +85,7 @@ export const EditModal = (props) => {
                                     <div className="mt-1 sm:mt-0 sm:col-span-2">
                                         <input type="number" name="listing-price" id="listing-price" required
                                             className="block w-full shadow-sm sm:text-sm focus:ring-pink-500 focus:border-pink-500 border-gray-300 rounded-md"
+                                            min="0"
                                             value={modalPrice}
                                             onChange={(e) => setModalPrice(e.target.value)}
                                         />
@@ -144,6 +159,7 @@ export const EditModal = (props) => {
                                     <div className="mt-1 sm:mt-0 sm:col-span-2">
                                         <input type="number" name="num-of-stock" id="num-of-stock" required
                                             className="block w-full shadow-sm sm:text-sm focus:ring-pink-500 focus:border-pink-500 border-gray-300 rounded-md"
+                                            min="0"
                                             value={modalNumOfStock}
                                             onChange={(e) => setModalNumOfStock(e.target.value)}
                                         />
@@ -194,21 +210,7 @@ export const EditModal = (props) => {
                                         focus:ring-pink-500
                                         has-tooltip
                                         "
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    patchListing(props._id, {
-                                        title: modalTitle,
-                                        price: Number(modalPrice),
-                                        description: modalDescription,
-                                        imageUrl: modalImageUrl,
-                                        condition: modalCondition,
-                                        availability: modalAvailability,
-                                        numOfStock: Number(modalNumOfStock),
-                                    }).then(() => {
-                                        props.loadListings();
-                                    })
-                                    props.setIsEdit(!props.isEdit);
-                                }}>
+                            >
                                 SAVE
                             </button>
                         </div>

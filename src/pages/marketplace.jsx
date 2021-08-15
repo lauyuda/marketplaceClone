@@ -16,7 +16,6 @@ const createListing = (data) =>
     },
   }).then((res) => res.json());
 
-
 const usePersistedState = (storageKey, defaultValue) => {
   const [value, setValue] = React.useState(
     () => sessionStorage.getItem(storageKey) || defaultValue
@@ -163,6 +162,7 @@ export const Marketplace = () => {
                       border-gray-300
                       rounded-md
                     "
+                      min="0"
                       value={price}
                       onChange={(e) => setPrice(e.target.value)} />
                   </div>
@@ -274,6 +274,7 @@ export const Marketplace = () => {
                       border-gray-300
                       rounded-md
                     "
+                      min="0"
                       value={numOfStock}
                       onChange={(e) => setNumOfStock(e.target.value)} />
                   </div>
@@ -313,7 +314,12 @@ export const Marketplace = () => {
           </form>
         </div>
       </main>
-      {isEdit && <EditModal isEdit={isEdit} setIsEdit={setIsEdit} _id={_id}  loadListings={loadListings}/>}
+      {(isEdit === true) &&
+        <EditModal
+          isEdit={isEdit}
+          setIsEdit={setIsEdit}
+          _id={_id}
+          loadListings={loadListings} />}
     </>
   )
 }
